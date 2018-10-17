@@ -15,7 +15,9 @@ Usage
 ====
 
 ```python
->>> toktok = ToktokTokenizer()
+>>> from toktok import Tokenizer
+
+>>> toktok = Tokenizer()
 >>> text = u'Is 9.5 or 525,600 my favorite number?'
 >>> print (toktok.tokenize(text, return_str=True))
 Is 9.5 or 525,600 my favorite number ?
