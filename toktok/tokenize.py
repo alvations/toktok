@@ -135,12 +135,13 @@ class Tokenizer:
                         CURRENCY_SYM_RE, EN_EM_DASHES, MULTI_DASHES, MULTI_DOTS,
                         FINAL_PERIOD_1, FINAL_PERIOD_2, ONE_SPACE]
 
+    TOKTOK_REGEXES = TOKTOK_REGEXES_1 + TOKTOK_REGEXES_2
+    
+    TOKTOK_REGEXES_ESCAPE_XML = TOKTOK_REGEXES_1 + TOKTOK_REGEXES_XML + TOKTOK_REGEXES_2
+
     def tokenize(self, text, escape_xml=False, return_str=False):
         # Create the list of regexes.
-        if not escape_xml:
-            TOKTOK_REGEXES = self.TOKTOK_REGEXES_1 + self.TOKTOK_REGEXES_2
-        else:
-            TOKTOK_REGEXES = self.TOKTOK_REGEXES_1 + self.TOKTOK_REGEXES_XML + self.TOKTOK_REGEXES_2
+        TOKTOK_REGEXES = self.TOKTOK_REGEXES_ESCAPE_XML if escape_xml else self.TOKTOK_REGEXES
         # Converts input string into unicode.
         text = text_type(text)
         for regexp, subsitution in TOKTOK_REGEXES:
