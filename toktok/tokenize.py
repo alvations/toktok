@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
-# Python port of the tok-tok.pl tokenizer.
 #
-# Copyright (C) 2001-2015 NLTK Project
-# Author: Jon Dehdari
+# NLTK spin-off: Python port of the tok-tok.pl tokenizer.
+#
+# Original Author: Jon Dehdari
 # Contributors: Liling Tan, Selcuk Ayguney, ikegami, Martijn Pieters
 
 """
