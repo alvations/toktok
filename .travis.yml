@@ -2,7 +2,7 @@ sudo: false
 
 language: python
 
-dist: bionic
+dist: xenial
 
 addons:
   apt:
@@ -21,4 +21,4 @@ install: # Only 1 dependency for text_type()
   - pip install six
 
 script:
-  - unbuffer python -m unittest discover toktok/test/ -v
+  - python -m unittest discover toktok/test/ -v
