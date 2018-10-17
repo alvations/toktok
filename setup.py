@@ -3,7 +3,7 @@ from distutils.core import setup
 setup(
   name = 'toktok',
   packages = ['toktok'],
-  version = '0.0.1',
+  version = '0.0.2',
   description = 'Toktok tokenizer',
   long_description = 'Toktok tokenizer in Python',
   author = '',

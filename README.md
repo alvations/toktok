@@ -1,7 +1,8 @@
 # Toktok
 
-Stand-alone Python port of [Tok-Tok Tokenizer](https://github.com/jonsafari/tok-tok)
+[![Build Status](https://travis-ci.org/alvations/toktok.svg?branch=master)](https://travis-ci.org/alvations/toktok)
 
+Stand-alone Python port of [Tok-Tok Tokenizer](https://github.com/jonsafari/tok-tok)
 
 Install
 ====
