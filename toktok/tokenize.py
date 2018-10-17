@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# NLTK spin-off: Python port of the tok-tok.pl tokenizer.
+# Stand-alone Python port of the tok-tok.pl tokenizer.
 #
 # Original Author: Jon Dehdari
 # Contributors: Liling Tan, Selcuk Ayguney, ikegami, Martijn Pieters
@@ -136,7 +136,7 @@ class Tokenizer:
                         FINAL_PERIOD_1, FINAL_PERIOD_2, ONE_SPACE]
 
     TOKTOK_REGEXES = TOKTOK_REGEXES_1 + TOKTOK_REGEXES_2
-    
+
     TOKTOK_REGEXES_ESCAPE_XML = TOKTOK_REGEXES_1 + TOKTOK_REGEXES_XML + TOKTOK_REGEXES_2
 
     def tokenize(self, text, escape_xml=False, return_str=False):
