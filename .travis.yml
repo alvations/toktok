@@ -1,0 +1,24 @@
+sudo: false
+
+language: python
+
+dist: bionic
+
+addons:
+  apt:
+    packages:
+      - expect-dev
+
+python:
+  - "2.7"
+  - "3.5"
+  - "3.6"
+  - "3.7"
+
+cache: pip
+
+install: # Only 1 dependency for text_type()
+  - pip install six
+
+script:
+  - unbuffer python -m unittest discover toktok/test/ -v
