@@ -66,12 +66,9 @@ class Tokenizer:
     MULTI_COMMAS = re.compile(r'(,{2,})'), r' \1 '
 
     # Treat continuous dashes as fake en-dash, etc.
-    ##MULTI_DASHES = re.compile(r'(-{2,})'), r' \1 '
+    MULTI_DASHES = re.compile(r'(-{2,})'), r' \1 '
     # Treat multiple periods as a thing (eg. ellipsis)
-    ##MULTI_DOTS = re.compile(r'(\.{2,})'), r' \1 '
-
-    # Combine MUTLI_COMMAS + MULTI_DASHES + MULTI_DOTS regexes
-    MULTI_DASHES_DOTS = re.compile(r'([\-\.]{2,})'), r' \1 '
+    MULTI_DOTS = re.compile(r'(\.{2,})'), r' \1 '
 
     # This is the \p{Open_Punctuation} from Perl's perluniprops
     # see http://perldoc.perl.org/perluniprops.html
@@ -103,13 +100,9 @@ class Tokenizer:
                              u'\ufdfc\ufe69\uff04\uffe0\uffe1\uffe5\uffe6')
 
     # Pad spaces after opening punctuations.
-    ##OPEN_PUNCT_RE = re.compile(u'([{}])'.format(OPEN_PUNCT)), r'\1 '
+    OPEN_PUNCT_RE = re.compile(u'([{}])'.format(OPEN_PUNCT)), r'\1 '
     # Pad spaces before closing punctuations.
-    ##CLOSE_PUNCT_RE = re.compile(u'([{}])'.format(CLOSE_PUNCT)), r'\1 '
-
-    # Combining OPEN_PUNCT_RE + CLOSE_PUNCT_RE + CURRENCY_SYM_RE into one.
-    OPEN_CLOSE_PUNCT = OPEN_PUNCT + CLOSE_PUNCT
-    OPEN_CLOSE_PUNCT_RE = re.compile(u'([{}])'.format(OPEN_CLOSE_PUNCT)), r'\1 '
+    CLOSE_PUNCT_RE = re.compile(u'([{}])'.format(CLOSE_PUNCT)), r'\1 '
 
     # Pad spaces after currency symbols.
     CURRENCY_SYM_RE = re.compile(u'([{}])'.format(CURRENCY_SYM)), r'\1 '
@@ -136,18 +129,18 @@ class Tokenizer:
 
     TOKTOK_REGEXES_XML = [AMPERCENT, TAB, PIPE]
 
-    TOKTOK_REGEXES_2 = [OPEN_CLOSE_PUNCT_RE,
+    TOKTOK_REGEXES_2 = [OPEN_PUNCT_RE, CLOSE_PUNCT_RE,
                         MULTI_COMMAS, COMMA_IN_NUM, FINAL_PERIOD_2,
                         PROB_SINGLE_QUOTES, STUPID_QUOTES_1, STUPID_QUOTES_2,
-                        CURRENCY_SYM_RE, EN_EM_DASHES, MULTI_DASHES_DOTS,
+                        CURRENCY_SYM_RE, EN_EM_DASHES, MULTI_DASHES, MULTI_DOTS,
                         FINAL_PERIOD_1, FINAL_PERIOD_2, ONE_SPACE]
 
     def tokenize(self, text, escape_xml=False, return_str=False):
         # Create the list of regexes.
         if not escape_xml:
-            TOKTOK_REGEXES = TOKTOK_REGEXES_1 + TOKTOK_REGEXES_2
+            TOKTOK_REGEXES = self.TOKTOK_REGEXES_1 + self.TOKTOK_REGEXES_2
         else:
-            TOKTOK_REGEXES = TOKTOK_REGEXES_1 + TOKTOK_REGEXES_XML + TOKTOK_REGEXES_2
+            TOKTOK_REGEXES = self.TOKTOK_REGEXES_1 + self.TOKTOK_REGEXES_XML + self.TOKTOK_REGEXES_2
         # Converts input string into unicode.
         text = text_type(text)
         for regexp, subsitution in TOKTOK_REGEXES:
